@@ -36,5 +36,5 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_email"/>
+
 </android.support.design.widget.CoordinatorLayout>

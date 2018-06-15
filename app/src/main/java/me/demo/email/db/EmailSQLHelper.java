@@ -4,15 +4,20 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import me.demo.email.R;
+
 
 public class EmailSQLHelper extends SQLiteOpenHelper {
+    private Context context;
     public EmailSQLHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table user (id integer primary key autoincrement, usr varchar(16) unique, pwd varchar(16))");
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_user));
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_email));
     }
 
     @Override

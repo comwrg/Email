@@ -42,6 +42,7 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         Intent intent = new Intent(this, EmailActivity.class);
+        intent.putExtra("usr", usr);
         startActivity(intent);
         finish();
     }

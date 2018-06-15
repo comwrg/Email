@@ -5,22 +5,28 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_camera"
-                android:icon="@drawable/ic_menu_camera"
+                android:id="@+id/nav_in"
+                android:icon="@drawable/ic_menu_send"
                 android:title="收件箱"/>
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
+                android:id="@+id/nav_out"
+                android:icon="@drawable/ic_menu_send"
                 android:title="发件箱"/>
         <item
-                android:id="@+id/nav_slideshow"
+                android:id="@+id/nav_drafts"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="草稿箱"/>
         <item
-                android:id="@+id/nav_manage"
+                android:id="@+id/nav_deleted"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="已删除邮件"/>
     </group>
 
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_menu_send"
+                android:title="退出"/>
+    </group>
 
 </menu>

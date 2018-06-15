@@ -23,6 +23,7 @@
             app:layout_constraintTop_toTopOf="@+id/login_txt_pwd"
             android:layout_marginTop="16dp" android:text="密码："/>
     <EditText
+            android:text="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -33,6 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintTop_toBottomOf="@+id/reg_lab_header"/>
     <EditText
+            android:text="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sql_create_table_user">
+        create table user (id integer primary key autoincrement, usr varchar(16) unique, pwd varchar(16))
+    </string>
+    <string name="sql_create_table_email">
+        create table email (id integer primary key autoincrement,
+                            title text,
+                            content text,
+                            date datetime,
+                            sender_id integer,
+                            receiver_id integer,
+                            send_status integer,
+                            read_status integer,
+                            delete_status integer default 0
+        )
+    </string>
+</resources>
