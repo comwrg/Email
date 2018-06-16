@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.SimpleAdapter;
 import me.demo.email.db.EmailSQLHelper;
 
 import java.text.DateFormat;
@@ -12,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class Email implements EmailApi {
     private final String TAG = "Email";
@@ -20,10 +18,6 @@ public class Email implements EmailApi {
     private int id;
     private String sid;
     private String usr;
-
-    public String getUsr() {
-        return usr;
-    }
 
     public Email(Context context) {
         sqlHelper = new EmailSQLHelper(context, "data.db", null, 1);
@@ -37,7 +31,8 @@ public class Email implements EmailApi {
             db = sqlHelper.getReadableDatabase();
             cursor = db.rawQuery("select * from user where usr=?", new String[]{usr});
             cursor.moveToNext();
-            this.id = cursor.getInt(cursor.getColumnIndex("id"));;
+            this.id = cursor.getInt(cursor.getColumnIndex("id"));
+            ;
             this.sid = String.valueOf(id);
             this.usr = usr;
         } catch (Exception e) {
@@ -48,6 +43,29 @@ public class Email implements EmailApi {
             if (db != null)
                 db.close();
         }
+    }
+
+    public String getUsr() {
+        return usr;
+    }
+
+    public String getUsr(int id) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = sqlHelper.getReadableDatabase();
+            cursor = db.rawQuery("select usr from user where id=?", new String[]{String.valueOf(id)});
+            cursor.moveToNext();
+            return cursor.getString(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+            if (db != null)
+                db.close();
+        }
+        return "";
     }
 
     @Override
@@ -62,7 +80,7 @@ public class Email implements EmailApi {
         try {
             db = sqlHelper.getReadableDatabase();
             cursor = db.rawQuery("select * from user where usr=? and pwd=?", new String[]{usr, pwd});
-            return  cursor.moveToNext();
+            return cursor.moveToNext();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

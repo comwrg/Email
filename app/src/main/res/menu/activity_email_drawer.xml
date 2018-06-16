@@ -6,26 +6,26 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_in"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/twotone_inbox_24"
                 android:title="收件箱"/>
         <item
                 android:id="@+id/nav_out"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/twotone_send_24"
                 android:title="发件箱"/>
         <item
                 android:id="@+id/nav_drafts"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/twotone_drafts_24"
                 android:title="草稿箱"/>
         <item
                 android:id="@+id/nav_deleted"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/twotone_delete_24"
                 android:title="已删除邮件"/>
     </group>
 
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_exit"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/twotone_keyboard_backspace_24"
                 android:title="退出"/>
     </group>
 

@@ -3,33 +3,29 @@ package me.demo.email.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.view.menu.ListMenuItemView;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.view.ContextMenu;
 import android.view.MenuItem;
-import android.widget.*;
-import butterknife.*;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
 import me.demo.email.R;
 import me.demo.email.adapter.EmailsAdapter;
 import me.demo.email.api.AEmail;
 import me.demo.email.api.Email;
 import me.demo.email.api.EmailApi;
 
-import java.io.Serializable;
-import java.nio.channels.InterruptedByTimeoutException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EmailActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +43,7 @@ public class EmailActivity extends BaseActivity
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
+    HeaderViewHolder header;
     EmailsAdapter emailsAdapter;
     Email email = null;
     List<AEmail> emails = null;
@@ -57,10 +54,12 @@ public class EmailActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
         ButterKnife.bind(this);
+        header = new HeaderViewHolder(navigationView.getHeaderView(0));
 
         Intent intent = getIntent();
         String usr = intent.getStringExtra("usr");
         email = new Email(this, usr);
+        header.txt_usr.setText(usr);
 
         setSupportActionBar(toolbar);
 
@@ -76,6 +75,7 @@ public class EmailActivity extends BaseActivity
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
         registerForContextMenu(listView);
+
     }
 
     @Override
@@ -95,7 +95,7 @@ public class EmailActivity extends BaseActivity
                 }
                 email.delete(emails.get(info.position).getId(), status);
                 onNavigationItemSelected(menuItem);
-            break;
+                break;
         }
         return super.onContextItemSelected(item);
     }
@@ -170,5 +170,15 @@ public class EmailActivity extends BaseActivity
         Intent intent = new Intent(this, SendEmailActivity.class);
         intent.putExtra("usr", email.getUsr());
         startActivityForResult(intent, 0);
+    }
+
+    // https://stackoverflow.com/questions/33194594/navigationview-get-find-header-layout
+    static class HeaderViewHolder {
+        @BindView(R.id.txt_usr)
+        TextView txt_usr;
+
+        HeaderViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

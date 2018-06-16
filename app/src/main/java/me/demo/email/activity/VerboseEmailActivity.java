@@ -2,15 +2,12 @@ package me.demo.email.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.demo.email.R;
+import me.demo.email.api.AEmail;
+import me.demo.email.api.Email;
 
 public class VerboseEmailActivity extends BaseActivity {
     @BindView(R.id.email_lab_title)
@@ -19,6 +16,10 @@ public class VerboseEmailActivity extends BaseActivity {
     TextView lab_title;
     @BindView(R.id.lab_content)
     TextView lab_content;
+    @BindView(R.id.lab_sender)
+    TextView lab_sender;
+    @BindView(R.id.lab_date)
+    TextView lab_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,14 @@ public class VerboseEmailActivity extends BaseActivity {
 
         Intent intent = getIntent();
         email_lab_title.setText(intent.getStringExtra("bar_title"));
-        lab_title.setText(intent.getStringExtra("title"));
-        lab_content.setText(intent.getStringExtra("content"));
+        String usr = intent.getStringExtra("usr");
+        int id = intent.getIntExtra("id", -1);
+        Email email = new Email(this, usr);
+        AEmail aEmail = email.read(id);
+        lab_title.setText(aEmail.getTitle());
+        lab_content.setText(aEmail.getContent());
+        lab_sender.setText(email.getUsr(aEmail.getReceiverId()));
+        lab_date.setText(aEmail.getDate());
     }
 
 }

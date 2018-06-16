@@ -1,13 +1,6 @@
 package me.demo.email.activity;
 
-import android.os.BatteryManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.style.TabStopSpan;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import butterknife.BindView;
@@ -15,7 +8,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.demo.email.R;
 import me.demo.email.api.Email;
-import me.demo.email.api.EmailApi;
 
 public class RegisterActivity extends BaseActivity {
 
