@@ -20,6 +20,11 @@
                 android:id="@+id/nav_deleted"
                 android:icon="@drawable/twotone_delete_24"
                 android:title="已删除邮件"/>
+        <item
+                android:id="@+id/nav_ad"
+                android:icon="@drawable/twotone_block_24"
+                android:title="广告邮件"
+              />
     </group>
 
     <group android:checkableBehavior="single">
