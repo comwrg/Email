@@ -34,6 +34,10 @@ public class RegisterActivity extends BaseActivity {
             Toast.makeText(this, "请输入！", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (!usr.contains("@")) {
+            Toast.makeText(this, "邮箱必须包含 @ !", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!pwd1.equals(pwd2)) {
             Toast.makeText(this, "两次密码输入不一样！", Toast.LENGTH_SHORT).show();
             return;
