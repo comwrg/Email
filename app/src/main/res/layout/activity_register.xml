@@ -8,7 +8,7 @@
         tools:context="me.demo.email.activity.SplashActivity">
 
     <TextView
-            android:text="帐号        ："
+            android:text="邮箱        ："
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
