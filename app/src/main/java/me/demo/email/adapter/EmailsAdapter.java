@@ -56,12 +56,13 @@ public class EmailsAdapter extends BaseAdapter {
         }
 
         AEmail e = emails.get(position);
-        viewHolder.Title.setText(e.getTitle());
+        boolean unread = e.getReadStatus() == AEmail.ReadStatus.NOT_READ
+                        && e.getSendStatus() == AEmail.SendStatus.HAS_SENT
+                        && type.equals("收件箱");
+        viewHolder.Title.setText(unread ? "（未读） " : "" + e.getTitle());
         viewHolder.Title
                 .getPaint()
-                .setFakeBoldText(e.getReadStatus() == AEmail.ReadStatus.NOT_READ
-                        && e.getSendStatus() == AEmail.SendStatus.HAS_SENT
-                        && type.equals("收件箱"));
+                .setFakeBoldText(unread);
         viewHolder.Content.setText(e.getContent());
         viewHolder.Date.setText(e.getDate());
 
