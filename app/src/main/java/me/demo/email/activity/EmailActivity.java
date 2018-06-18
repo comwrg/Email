@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmailActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, EmailsAdapter.StarClickListener {
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -69,7 +70,7 @@ public class EmailActivity extends BaseActivity
 
         navigationView.setNavigationItemSelectedListener(this);
         emails = new ArrayList<>();
-        emailsAdapter = new EmailsAdapter(this, emails);
+        emailsAdapter = new EmailsAdapter(this, emails, this);
         listView.setAdapter(emailsAdapter);
 
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
@@ -101,7 +102,7 @@ public class EmailActivity extends BaseActivity
     }
 
     @OnItemClick(R.id.listview)
-    void itemClick(int pos) {
+    void itemClick(int pos, long id) {
         Intent intent = null;
         if (menuItem.getItemId() != R.id.nav_drafts) {
             intent = new Intent(this, VerboseEmailActivity.class);
@@ -170,6 +171,12 @@ public class EmailActivity extends BaseActivity
         Intent intent = new Intent(this, SendEmailActivity.class);
         intent.putExtra("usr", email.getUsr());
         startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void starClick(View v) {
+        EmailsAdapter.StarTag tag = (EmailsAdapter.StarTag) v.getTag();
+        email.star(emails.get(tag.pos).getId(), tag.star ? AEmail.StarStatus.STAR : AEmail.StarStatus.NO_STAR);
     }
 
     // https://stackoverflow.com/questions/33194594/navigationview-get-find-header-layout

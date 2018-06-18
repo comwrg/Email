@@ -151,7 +151,8 @@ public class Email implements EmailApi {
                 cursor.getInt(5),
                 cursor.getInt(6),
                 cursor.getInt(7),
-                cursor.getInt(8)
+                cursor.getInt(8),
+                cursor.getInt(9)
         );
     }
 
@@ -298,5 +299,17 @@ public class Email implements EmailApi {
         return -1;
     }
 
+    public void star(int id, int starStatus) {
+        SQLiteDatabase db = null;
+        try {
+            db = sqlHelper.getWritableDatabase();
+            db.execSQL("update email set star_status=? where id=?", new Object[]{starStatus, id});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (db != null)
+                db.close();
+        }
+    }
 
 }

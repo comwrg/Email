@@ -12,7 +12,8 @@
                             receiver_id integer,
                             send_status integer,
                             read_status integer,
-                            delete_status integer default 0
+                            delete_status integer default 0,
+                            star_status integer default 0
         )
     </string>
 </resources>

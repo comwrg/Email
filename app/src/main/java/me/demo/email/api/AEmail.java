@@ -10,8 +10,9 @@ public class AEmail {
     private int sendStatus;
     private int readStatus;
     private int deleteStatus;
+    private int starStatus;
 
-    AEmail(int id, String title, String content, String date, int sendId, int receiverId, int sendStatus, int readStatus, int deleteStatus) {
+    AEmail(int id, String title, String content, String date, int sendId, int receiverId, int sendStatus, int readStatus, int deleteStatus, int starStatus) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -21,6 +22,7 @@ public class AEmail {
         this.sendStatus = sendStatus;
         this.readStatus = readStatus;
         this.deleteStatus = deleteStatus;
+        this.starStatus = starStatus;
     }
 
     public int getDeleteStatus() {
@@ -59,6 +61,10 @@ public class AEmail {
         return readStatus;
     }
 
+    public int getStarStatus() {
+        return starStatus;
+    }
+
     public static class SendStatus {
         public static final int NOT_SEND = 1;
         public static final int HAS_SENT = 2;
@@ -73,6 +79,11 @@ public class AEmail {
         public static final int NOT_DELETE = 0;
         public static final int SOFT_DELETE = 1;
         public static final int HARD_DELETE = 2;
+    }
+
+    public static class StarStatus {
+        public static final int NO_STAR = 0;
+        public static final int STAR = 1;
     }
 
 }
