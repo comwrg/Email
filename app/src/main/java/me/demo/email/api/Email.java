@@ -94,13 +94,19 @@ public class Email implements EmailApi {
 
     public RegisterCode register(String usr, String pwd) {
         SQLiteDatabase db = null;
+        Cursor cursor = null;
         try {
             db = sqlHelper.getReadableDatabase();
+            cursor = db.rawQuery("select * from user where usr=?", new String[]{usr});
+            if (cursor.moveToNext())
+                return RegisterCode.USR_HAS_REGISTERED;
             db.execSQL("insert into user (usr, pwd) values(?, ?)", new Object[]{usr, pwd});
         } catch (SQLException e) {
             e.printStackTrace();
             return RegisterCode.UNKNOWN_ERROR;
         } finally {
+            if (cursor != null)
+                cursor.close();
             if (db != null)
                 db.close();
         }
