@@ -35,7 +35,7 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
         if (!usr.contains("@")) {
-            Toast.makeText(this, "邮箱必须包含 @ !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "邮箱格式不正确!", Toast.LENGTH_SHORT).show();
             return;
         }
         if (!pwd1.equals(pwd2)) {
