@@ -45,6 +45,7 @@ public class RegisterActivity extends BaseActivity {
         Email email = new Email(this);
         Email.RegisterCode code = email.register(usr, pwd1);
         if (Email.RegisterCode.SUCC.equals(code)) {
+            Toast.makeText(this, "注册成功！", Toast.LENGTH_SHORT).show();
             finish();
         } else if (Email.RegisterCode.USR_HAS_REGISTERED.equals(code)) {
             Toast.makeText(this, "此用户名已被注册！", Toast.LENGTH_SHORT).show();
