@@ -150,6 +150,8 @@ public class EmailActivity extends BaseActivity
             emails = email.read(EmailApi.Box.DRAFT);
         } else if (itemId == R.id.nav_deleted) {
             emails = email.read(EmailApi.Box.DELETE);
+        } else if (itemId == R.id.nav_ad) {
+            emails = new ArrayList<>();
         } else if (itemId == R.id.nav_exit) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
