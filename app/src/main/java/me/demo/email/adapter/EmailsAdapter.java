@@ -92,7 +92,11 @@ public class EmailsAdapter extends BaseAdapter implements View.OnClickListener {
         boolean unread = e.getReadStatus() == AEmail.ReadStatus.NOT_READ
                         && e.getSendStatus() == AEmail.SendStatus.HAS_SENT
                         && type.equals("收件箱");
-        viewHolder.Title.setText(unread ? "（未读） " : "" + e.getTitle());
+        String unreadPrefix = "";
+        if (unread) {
+            unreadPrefix = "（未读 " + e.getSender() +"） ";
+        }
+        viewHolder.Title.setText(unreadPrefix + e.getTitle());
         viewHolder.Title
                 .getPaint()
                 .setFakeBoldText(unread);
