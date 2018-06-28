@@ -130,7 +130,7 @@ public class Email implements EmailApi {
                 cursor = db.rawQuery("select * from email where sender_id=? and send_status=? and delete_status=0",
                         new String[]{sid, String.valueOf(AEmail.SendStatus.NOT_SEND)});
             } else if (Box.DELETE.equals(box)) {
-                cursor = db.rawQuery("select * from email where sender_id=? and delete_status=?",
+                cursor = db.rawQuery("select * from email where receiver_id=? and delete_status=?",
                         new String[]{sid, String.valueOf(AEmail.DeleteStatus.SOFT_DELETE)});
             }
             while (cursor.moveToNext()) {
